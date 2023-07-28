@@ -61,7 +61,7 @@ def es_delete_data(index, uuid):
     if (deleted_count == 1):
         print(f"uuid: {uuid} ===> 删除成功!")
 
-    time.sleep(2)
+    time.sleep(1)
 
 
 def es_delete(hits):
@@ -134,3 +134,4 @@ if __name__ == "__main__":
 
     # hits = es_query_uuid(es_index, "0082c9dad0875a3059b90e3b18a05902")
     # es_delete(hits)
+    print("1000条删除完毕!!!")
