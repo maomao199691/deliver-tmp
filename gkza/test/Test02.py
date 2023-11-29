@@ -4,6 +4,7 @@ import time
 # https://www.23hh.com/book/32792/32792728/
 #url = "https://www.23hh.com/book/32792/32792728/83720731.html"
 
+
 url = "https://www.baidu.com"
 
 max_retries = 3
