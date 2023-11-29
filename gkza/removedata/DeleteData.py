@@ -11,7 +11,7 @@ repeat_data_count = {
             "terms": {
                 "field": "uuid",
                 "min_doc_count": 2,
-                "size": 10000
+                "size": 20000
             }
         }
     }
@@ -71,7 +71,7 @@ def es_delete(hits):
         _id = data["_id"]
 
         _source = data["_source"]
-        collect_url = _source["collect_url"]
+        collect_url = _source.get("collect_url", "")
         # print(f"_index: {_index}, _id: {_id}, collect_url: {collect_url}")
 
         if _index not in data_dict:
@@ -87,7 +87,7 @@ def es_delete(hits):
     #     print(f"_index: {index} ==> uid: {uid} ==> url: {url}")
 
     # 先判断 info_pre_2023 是否在字典中,存在就判断url是否包含http,不包含就删除
-    info_index = "info_pre_2023"
+    info_index = "project_pre_2023"
     if info_index in data_dict.keys():
         info_url = data_dict[info_index]["url"]
         info_uuid = data_dict[info_index]["id"]
@@ -126,7 +126,7 @@ def es_delete(hits):
 
 
 if __name__ == "__main__":
-    es_index = "info_pre"
+    es_index = "project_pre"
     uuid_list = es_query(es_index,repeat_data_count)
     for uuid in uuid_list:
         hits = es_query_uuid(es_index, uuid)
@@ -134,4 +134,4 @@ if __name__ == "__main__":
 
     # hits = es_query_uuid(es_index, "0082c9dad0875a3059b90e3b18a05902")
     # es_delete(hits)
-    print("1000条删除完毕!!!")
+    print("20000条删除完毕!!!")
